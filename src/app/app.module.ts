@@ -3,21 +3,19 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpModule } from '@angular/http'
 
 import { MyApp } from './app.component';
 import { GitHubServiceProvider } from '../providers/github-service/github.service';
-//import { RepositoriesComponent } from '../components/repositories/repositories';
-//import { SearchResultsComponent } from '../components/search-results/search-results.component';
 
 @NgModule({
   declarations: [
-    MyApp,
-  //  RepositoriesComponent,
-  //  SearchResultsComponent
+    MyApp
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
