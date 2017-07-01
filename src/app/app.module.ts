@@ -5,12 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { GitHubServiceProvider } from '../providers/github-service/github.service';
+//import { RepositoriesComponent } from '../components/repositories/repositories';
+//import { SearchResultsComponent } from '../components/search-results/search-results.component';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+  //  RepositoriesComponent,
+  //  SearchResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -18,13 +21,13 @@ import { HomePage } from '../pages/home/home';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GitHubServiceProvider
   ]
 })
 export class AppModule {}
