@@ -23,12 +23,6 @@ export class ProfileSearchResultsPage {
   repositories: Repository[];
 
   constructor(private github: GitHubServiceProvider, private navCtrl: NavController, private navParams: NavParams, private events: Events) {
-    this.events.subscribe('repository:selected', (selectedRepository) => {
-      console.log("ProfileSearchResultsPage. repository:selected event.");
-      this.navCtrl.push('RepoDetailsPage', {
-        repo: selectedRepository
-      });
-    });
   }
 
   getUserInformation(): void {
@@ -49,6 +43,19 @@ export class ProfileSearchResultsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfileSearchResultsPage');
+    this.events.subscribe('repository:selected', (selectedRepository) => {
+      console.log("ProfileSearchResultsPage. repository:selected event.");
+      if(this.navCtrl.getActive().name != 'RepoDetailsPage') {
+        this.navCtrl.push('RepoDetailsPage', {
+          repo: selectedRepository
+        });
+      }
+    });
+
+  }
+  
+  ionViewWillUnload() {
+    this.events.unsubscribe('repository:selected');
   }
 
 }
