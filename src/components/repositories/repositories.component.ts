@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Repository } from '../../models/repository.interface';
+import { Events } from 'ionic-angular';
+
 /**
  * Generated class for the RepositoriesComponent component.
  *
@@ -12,7 +14,15 @@ import { Repository } from '../../models/repository.interface';
 })
 export class RepositoriesComponent {
 
-  @Input() respository: Repository;
+  @Input() repository: Repository;
   
+  constructor(private events: Events) {
+
+  }
+
+  repositorySelected(): void {
+    console.log("repositorySelected");
+    this.events.publish('repository:selected', this.repository);
+  }
 
 }

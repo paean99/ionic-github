@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { GitHubServiceProvider } from '../../providers/github-service/github.service';
 import { User } from '../../models/user.interface';
 import { Repository } from '../../models/repository.interface';
@@ -22,7 +22,13 @@ export class ProfileSearchResultsPage {
   searchResultUser: User; // set by the provider, and is the user object representing the username
   repositories: Repository[];
 
-  constructor(private github: GitHubServiceProvider, private navCtrl: NavController, private navParams: NavParams) {
+  constructor(private github: GitHubServiceProvider, private navCtrl: NavController, private navParams: NavParams, private events: Events) {
+    this.events.subscribe('repository:selected', (selectedRepository) => {
+      console.log("ProfileSearchResultsPage. repository:selected event.");
+      this.navCtrl.push('RepoDetailsPage', {
+        repo: selectedRepository
+      });
+    });
   }
 
   getUserInformation(): void {

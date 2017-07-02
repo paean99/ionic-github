@@ -1,9 +1,9 @@
 
-<ion-card>
+<ion-card tappable (click)='repositorySelected()'>
   <ion-card-header>
-    <ion-card-title> {{ respository.name }} </ion-card-title>
+    <ion-card-title> {{ repository.name }} </ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    {{ respository.description }}
+    {{ repository.description }}
   </ion-card-content>
 </ion-card>
