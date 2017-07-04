@@ -55,6 +55,10 @@ export class ProfileSearchResultsPage {
   }
   
   ionViewWillUnload() {
+    /**
+     * Need to unsubscribe if we unload the page - else
+     * we get multiple subscriptions and they all fire.
+     */
     this.events.unsubscribe('repository:selected');
   }
 
